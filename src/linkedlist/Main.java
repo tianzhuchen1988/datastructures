@@ -10,5 +10,15 @@ public class Main {
 
         linkedList.set(2, 666);
         System.out.println(linkedList);
+
+        linkedList.remove(2);
+        System.out.println(linkedList);
+
+        linkedList.removeFirst();
+        System.out.println(linkedList);
+
+        linkedList.removeLast();
+        System.out.println(linkedList);
+
     }
 }
