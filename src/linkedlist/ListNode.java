@@ -8,7 +8,7 @@ public class ListNode {
     }
 
     ListNode(int[] arr){
-        if(arr == null || arr.length < 0){
+        if(arr == null || arr.length == 0){
             throw new IllegalArgumentException("arr is null.");
         }
 
