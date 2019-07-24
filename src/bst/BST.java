@@ -112,6 +112,34 @@ public class BST<E extends Comparable<E>> {
         }
     }
 
+    public E minimum(){
+        if(root == null){
+            throw new IllegalArgumentException("bst is empty.");
+        }
+        return minimum(root);
+    }
+
+    private E minimum(Node node){
+        if(node.left == null){
+            return node.e;
+        }
+        return minimum(node.left);
+    }
+
+    public E maximum(){
+        if(root == null){
+            throw new IllegalArgumentException("bst is empty.");
+        }
+        return maximum(root);
+    }
+
+    private E maximum(Node node){
+        if(node.right == null){
+            return node.e;
+        }
+        return maximum(node.right);
+    }
+
     public static void main(String[] args) {
         BST<Integer> bst = new BST<>();
         int[] nums = {5, 3, 6, 8, 4, 2};
@@ -124,6 +152,9 @@ public class BST<E extends Comparable<E>> {
         bst.preOrderNR();
 
         bst.levelOrder();
+
+        System.out.println(bst.minimum());
+        System.out.println(bst.maximum());
     }
 
 }
