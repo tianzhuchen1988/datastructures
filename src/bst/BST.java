@@ -140,6 +140,42 @@ public class BST<E extends Comparable<E>> {
         return maximum(node.right);
     }
 
+    public E removeMin(){
+        E res = minimum();
+        root = removeMin(root);
+        return res;
+    }
+
+    private Node removeMin(Node node){
+        if(node.left == null){
+            Node rightNode = node.right;
+            node.right = null;
+            size--;
+            return rightNode;
+        }
+
+        node.left = removeMin(node.left);
+        return node;
+    }
+
+    public E removeMax(){
+        E res = maximum();
+        root = removeMax(root);
+        return res;
+    }
+
+    private Node removeMax(Node node){
+        if(node.right == null){
+            Node leftNode = node.left;
+            node.left = null;
+            size--;
+            return leftNode;
+        }
+
+        node.right = removeMax(node.right);
+        return node;
+    }
+
     public static void main(String[] args) {
         BST<Integer> bst = new BST<>();
         int[] nums = {5, 3, 6, 8, 4, 2};
