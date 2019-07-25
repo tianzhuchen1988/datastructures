@@ -213,6 +213,24 @@ public class BST<E extends Comparable<E>> {
 
     }
 
+    public int deep(){
+        return deep(root);
+    }
+
+    private int deep(Node node){
+        int deep = 0;
+        if(node == null){
+            return 0;
+        }
+
+        deep++;
+        int leftDeep = deep(node.left);
+        int rightDeep = deep(node.right);
+
+        return deep + (leftDeep >= rightDeep ? leftDeep : rightDeep);
+    }
+
+
     public static void main(String[] args) {
         BST<Integer> bst = new BST<>();
         int[] nums = {5, 3, 6, 8, 4, 2};
@@ -233,6 +251,11 @@ public class BST<E extends Comparable<E>> {
 
         bst.remove(5);
         bst.levelOrder();
+        System.out.println("deep=" + bst.deep());
+
+        bst.remove(4);
+        bst.remove(2);
+        System.out.println("deep=" + bst.deep());
     }
 
 }
