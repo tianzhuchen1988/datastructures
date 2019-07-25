@@ -1,5 +1,7 @@
 package set;
 
+import map.LinkedListMap;
+
 import java.util.ArrayList;
 
 public class Main {
@@ -12,9 +14,14 @@ public class Main {
         if(FileOperation.readFile("C:\\Users\\Administrator\\Desktop\\tianmai3\\datastructures\\pride-and-prejudice.txt", words1)) {
             System.out.println("Total words: " + words1.size());
 
-            LinkedListSet<String> set1 = new LinkedListSet<>();
-            for (String word : words1)
-                set1.add(word);
+            LinkedListMap<String, Integer> set1 = new LinkedListMap<>();
+            for (String word : words1){
+                if(set1.contains(word)){
+                    set1.set(word, set1.get(word) + 1);
+                }else{
+                    set1.add(word, 1);
+                }
+            }
             System.out.println("Total different words: " + set1.getSize());
         }
 
