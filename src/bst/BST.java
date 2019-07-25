@@ -116,12 +116,12 @@ public class BST<E extends Comparable<E>> {
         if(root == null){
             throw new IllegalArgumentException("bst is empty.");
         }
-        return minimum(root);
+        return minimum(root).e;
     }
 
-    private E minimum(Node node){
+    private Node minimum(Node node){
         if(node.left == null){
-            return node.e;
+            return node;
         }
         return minimum(node.left);
     }
@@ -130,12 +130,12 @@ public class BST<E extends Comparable<E>> {
         if(root == null){
             throw new IllegalArgumentException("bst is empty.");
         }
-        return maximum(root);
+        return maximum(root).e;
     }
 
-    private E maximum(Node node){
+    private Node maximum(Node node){
         if(node.right == null){
-            return node.e;
+            return node;
         }
         return maximum(node.right);
     }
@@ -176,6 +176,43 @@ public class BST<E extends Comparable<E>> {
         return node;
     }
 
+    public void remove(E e){
+        root = remove(root, e);
+    }
+
+    private Node remove(Node node, E e){
+        if(node == null){
+            return null;
+        }
+        if(e.compareTo(node.e) < 0){
+            node.left = remove(node.left, e);
+        }else if(e.compareTo(node.e) > 0){
+            node.right = remove(node.right, e);
+        }else{
+            if(node.left == null){
+                Node rightNode = node.right;
+                node.right = null;
+                size--;
+                return rightNode;
+            }
+            if(node.right == null){
+                Node leftNode = node.left;
+                node.left = null;
+                size--;
+                return leftNode;
+            }
+            Node successor = minimum(node.right);
+            successor.right = removeMin(node.right);
+            successor.left = node.left;
+            node.left = null;
+            node.right = null;
+            return successor;
+        }
+
+        return node;
+
+    }
+
     public static void main(String[] args) {
         BST<Integer> bst = new BST<>();
         int[] nums = {5, 3, 6, 8, 4, 2};
@@ -191,6 +228,11 @@ public class BST<E extends Comparable<E>> {
 
         System.out.println(bst.minimum());
         System.out.println(bst.maximum());
+
+        System.out.println();
+
+        bst.remove(5);
+        bst.levelOrder();
     }
 
 }
