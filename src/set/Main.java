@@ -1,5 +1,6 @@
 package set;
 
+import map.BSTMap;
 import map.LinkedListMap;
 
 import java.util.ArrayList;
@@ -11,10 +12,10 @@ public class Main {
         System.out.println("Pride and Prejudice");
 
         ArrayList<String> words1 = new ArrayList<>();
-        if(FileOperation.readFile("C:\\Users\\Administrator\\Desktop\\tianmai3\\datastructures\\pride-and-prejudice.txt", words1)) {
+        if(FileOperation.readFile("D:\\idea_projects\\gshop\\datastructures\\pride-and-prejudice.txt", words1)) {
             System.out.println("Total words: " + words1.size());
 
-            LinkedListMap<String, Integer> set1 = new LinkedListMap<>();
+            BSTMap<String, Integer> set1 = new BSTMap<>();
             for (String word : words1){
                 if(set1.contains(word)){
                     set1.set(word, set1.get(word) + 1);
