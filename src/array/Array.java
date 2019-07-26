@@ -89,6 +89,15 @@ public class Array<E> {
         return -1;
     }
 
+    public void swap(int i, int j){
+        if(i < 0 || i >= size || j < 0 || j >= size){
+            throw new IllegalArgumentException("index is invalid.");
+        }
+        E t = data[i];
+        data[i] = data[j];
+        data[j] = t;
+    }
+
     public E remove(int index){
         if(index < 0 || index >= size){
             throw new IllegalArgumentException("Remove failed, index is invalid.");
