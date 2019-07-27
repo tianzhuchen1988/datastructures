@@ -42,11 +42,13 @@ public class MaxHeap<E extends Comparable<E>> {
     }
 
     public E extractMax(){
-        if(data.isEmpty()){
-            throw new IllegalArgumentException("heap is empty.");
-        }
-        E ret = data.get(0);
+
+        E ret = findMax();
+
+        data.swap(0, data.getSize() - 1);
+        data.removeLast();
         siftDown(0);
+
         return ret;
     }
 
