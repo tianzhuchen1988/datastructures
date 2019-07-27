@@ -14,6 +14,13 @@ public class MaxHeap<E extends Comparable<E>> {
         data = new Array<>();
     }
 
+    public MaxHeap(E[] arr){
+        data = new Array<>(arr);
+        for(int i = parent(data.getSize() - 1); i >=0; i--){
+            siftDown(i);
+        }
+    }
+
     public int getSize(){
         return data.getSize();
     }
@@ -78,6 +85,13 @@ public class MaxHeap<E extends Comparable<E>> {
 
     private int rightChild(int index){
         return index * 2 + 2;
+    }
+
+    public E replace(E e){
+        E ret = findMax();
+        data.set(0, e);
+        siftDown(0);
+        return ret;
     }
 
 }
