@@ -1,7 +1,5 @@
 package map;
 
-import bst.BST;
-
 public class BSTMap<K extends Comparable<K>, V> implements Map<K, V>{
 
     private class Node{
